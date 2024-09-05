@@ -1,0 +1,5 @@
+module.exports.CONTRACT_PARTICIPANT_STATUS = {
+    APPROVED: 1,
+    NOT_SIGNED: 0,
+    SIGNED: 2
+}

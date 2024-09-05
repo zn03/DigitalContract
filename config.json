@@ -1,0 +1,8 @@
+{
+  "VEBUS_HOST": "192.168.1.122",
+  "VEBUS_PORT": "3306",
+  "VEBUS_DBNAME": "vebus_clonepro",
+  "VEBUS_USER": "vdsi",
+  "VEBUS_PASS": "Vdsi@2023",
+  "AESKey":"8UHjPgxZzXCGkhxV2QCnOOyJexUzVJrO"
+}

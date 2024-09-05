@@ -1,0 +1,40 @@
+{
+  "name": "digital-contract",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "cross-env NODE_ENV=development node ./bin/www",
+    "dev": "cross-env NODE_ENV=development nodemon ./bin/www -e js,ejs,json",
+    "rebuild-test-db": "cross-env NODE_ENV=test npx sequelize-cli db:drop && cross-env NODE_ENV=test npx sequelize-cli db:create && cross-env NODE_ENV=test npx sequelize-cli db:migrate && cross-env NODE_ENV=test npx sequelize-cli db:seed:all",
+    "production": "cross-env NODE_ENV=production node ./bin/www"
+  },
+  "dependencies": {
+    "axios": "^1.4.0",
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "debug": "~2.6.9",
+    "dotenv": "^16.0.3",
+    "express": "^4.19.2",
+    "fs": "^0.0.1-security",
+    "http-errors": "~1.6.3",
+    "joi": "17.13.1",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "1.4.5-lts.1",
+    "mysql2": "^3.10.2",
+    "nodemailer": "^6.9.14",
+    "prom-client": "^14.2.0",
+    "sequelize": "^6.37.3",
+    "sequelize-cli": "^6.6.2",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
+    "uuid": "^9.0.0",
+    "winston": "^3.9.0",
+    "xml2js": "^0.6.2"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "nodemon": "^3.1.0"
+  }
+}

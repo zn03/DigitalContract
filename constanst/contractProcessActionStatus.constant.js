@@ -1,0 +1,10 @@
+module.exports.CONTRACT_PROCESS_ACTION_STATUS = {
+    APPROVED: 1,
+    NOT_ACTION: 0,
+    SIGNED: 2
+}
+module.exports.CONTRACT_PROCESS_ACTION_BY = {
+    APPROVED: 1,
+    NOT_ACTION: 0,
+    SIGNED: 2
+}

@@ -1,0 +1,2034 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "API Website Quản Lý Hợp Đồng",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3002/api"
+    }
+  ],
+  "paths": {
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Đăng nhập",
+        "description": "Đăng nhập vào hệ thống",
+        "operationId": "login",
+        "requestBody": {
+          "description": "Thông tin đăng nhập",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "abc@gmail.com",
+                    "xml": {
+                      "namespace": "localhost:3002/api/auth/login",
+                      "prefix": "login"
+                    }
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "abc@123"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Đăng nhập thành công",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "accessToken": {
+                          "type": "string",
+                          "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjEsImV4cGlyZUF0IjoiMjAyNC0wOC0wM1QxMDoxOToyNy43MjZaIiwiaWF0IjoxNzIyNTY4NzY3fQ.pExfOwrAzMer1Y_NzJM6IzL0GWl9cQ_XLheg5xSGOG0"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Lỗi sai mật khẩu hoặc email",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Sai email hoặc password"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/signUp": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Đăng ký",
+        "description": "Đăng ký vào hệ thống",
+        "operationId": "signUp",
+        "requestBody": {
+          "description": "Thông tin đăng ký",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Nguyễn Hoàng Thái"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "example": 12345678910
+                  },
+                  "address": {
+                    "type": "string",
+                    "example": "Hà Nội"
+                  },
+                  "idNumber": {
+                    "type": "string",
+                    "example": 22393848332
+                  },
+                  "accountType": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "status": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "abc@gmail.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "Thai@2003"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Đăng ký thành công",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "integer",
+                              "example": 1
+                            },
+                            "name": {
+                              "type": "string",
+                              "example": "Nguyễn Hoàng Thái"
+                            },
+                            "email": {
+                              "type": "string",
+                              "example": "abc@gmail.com"
+                            },
+                            "phone": {
+                              "type": "string",
+                              "example": 332998889
+                            },
+                            "address": {
+                              "type": "string",
+                              "example": "Hà Nội"
+                            },
+                            "status": {
+                              "type": "integer",
+                              "example": 1
+                            },
+                            "idNumber": {
+                              "type": "string",
+                              "example": 22393848332
+                            },
+                            "accountType": {
+                              "type": "integer",
+                              "example": 1
+                            },
+                            "createdAt": {
+                              "type": "string",
+                              "format": "date-time",
+                              "example": "2024-07-27T00:51:03.000Z"
+                            },
+                            "updatedAt": {
+                              "type": "string",
+                              "format": "date-time",
+                              "example": "2024-07-27T00:51:03.000Z"
+                            },
+                            "organizationId": {
+                              "type": "integer",
+                              "example": 1
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Lỗi sai mật khẩu hoặc email",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "string",
+                      "example": null
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Các trường không được trống"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get all users",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of users",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Create a new user",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Nguyễn Hoàng Thái"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "example": 12345678910
+                  },
+                  "address": {
+                    "type": "string",
+                    "example": "Hà Nội"
+                  },
+                  "idNumber": {
+                    "type": "string",
+                    "example": 22393848332
+                  },
+                  "status": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "abc@gmail.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "Thai@2003"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "User created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get a user by ID",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "A single user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Update a user by ID",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Nguyễn Hoàng Thái"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "example": 12345678910
+                  },
+                  "address": {
+                    "type": "string",
+                    "example": "Hà Nội"
+                  },
+                  "idNumber": {
+                    "type": "string",
+                    "example": 22393848332
+                  },
+                  "status": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "abc@gmail.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "Thai@2003"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Delete a user by ID",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "User deleted successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "User not found"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/signatures": {
+      "get": {
+        "tags": [
+          "Signature"
+        ],
+        "summary": "Get all signatures",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of signatures",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "items": {
+                    "$ref": "#/components/schemas/Signature"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Signature"
+        ],
+        "summary": "Create a new signature",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "signatureData": {
+                    "type": "object",
+                    "properties": {
+                      "serialNumber": {
+                        "type": "string",
+                        "example": "133287538"
+                      },
+                      "issuer": {
+                        "type": "string",
+                        "example": "Thái"
+                      },
+                      "issueDate": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "2024-07-27T00:00:00.000Z"
+                      },
+                      "expireDate": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "2024-07-27T00:00:00.000Z"
+                      },
+                      "description": {
+                        "type": "string",
+                        "example": "Đã đăng ký gói"
+                      },
+                      "apiUrl": {
+                        "type": "string",
+                        "example": "https://something"
+                      },
+                      "userId": {
+                        "type": "integer",
+                        "example": 1
+                      },
+                      "organizationId": {
+                        "type": "integer",
+                        "example": 1
+                      },
+                      "type": {
+                        "type": "integer",
+                        "example": 1
+                      }
+                    },
+                    "required": [
+                      "serialNumber",
+                      "issuer",
+                      "issueDate",
+                      "expireDate",
+                      "userId",
+                      "type"
+                    ]
+                  },
+                  "signatureImage": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Signature created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "items": {
+                    "message": {
+                      "type": "string",
+                      "example": "Signature created successfully"
+                    },
+                    "$ref": "#/components/schemas/Signature"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/signatures/{id}": {
+      "get": {
+        "tags": [
+          "Signature"
+        ],
+        "summary": "Get a signature by ID",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single signature",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "items": {
+                    "$ref": "#/components/schemas/Signature"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Signature not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Signature not found"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Signature"
+        ],
+        "summary": "Update a signature by ID",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "serialNumber": {
+                    "type": "string",
+                    "example": 133287538
+                  },
+                  "issuer": {
+                    "type": "string",
+                    "example": "Thái"
+                  },
+                  "issueDate": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2024-07-27T00:00:00.000Z"
+                  },
+                  "expireDate": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2024-07-27T00:00:00.000Z"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Đã đăng ký gói"
+                  },
+                  "apiUrl": {
+                    "type": "string",
+                    "example": "https://something"
+                  },
+                  "userId": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "organizationId": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "type": {
+                    "type": "integer",
+                    "example": 1
+                  }
+                },
+                "required": [
+                  "serialNumber",
+                  "issuer",
+                  "issueDate",
+                  "expireDate",
+                  "userId",
+                  "organizationId",
+                  "type"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Signature updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "items": {
+                    "message": {
+                      "type": "string",
+                      "example": "Signature updated successfully"
+                    },
+                    "$ref": "#/components/schemas/Signature"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Signature not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Signature not found."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Signature"
+        ],
+        "summary": "Delete a signature by ID",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Signature deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Signature deleted successfully."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Signature not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Signature not found."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contractTypes": {
+      "get": {
+        "tags": [
+          "Contract Type"
+        ],
+        "summary": "Get all contract types",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of contract types",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ContractType"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Contract Type"
+        ],
+        "summary": "Create a new contract type",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "contractTypes": {
+                    "$ref": "#/components/schemas/ContractType"
+                  },
+                  "contractTypeProcessTemplates": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ContractTypeProcessTemplate"
+                    }
+                  }
+                },
+                "required": [
+                  "contractTypes",
+                  "contractTypeProcessTemplates"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Contract type created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Contract type created successfully."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contractTypes/{id}": {
+      "get": {
+        "tags": [
+          "Contract Type"
+        ],
+        "summary": "Get a contract type by ID",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single contract type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "contractTypes": {
+                      "$ref": "#/components/schemas/ContractType"
+                    },
+                    "contractTypeProcessTemplates": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ContractTypeProcessTemplate"
+                      }
+                    }
+                  },
+                  "required": [
+                    "contractTypes",
+                    "contractTypeProcessTemplates"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Contract type not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Contract type not found."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Contract Type"
+        ],
+        "summary": "Update a contract type by ID",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Hợp đồng abc"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Hợp đồng abc"
+                  }
+                },
+                "required": [
+                  "name"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Contract type updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Contract type updated successfully."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Contract type not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Contract type not found."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Contract Type"
+        ],
+        "summary": "Delete a contract type by ID",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Contract type deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Contract type deleted successfully."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Contract type not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Contract type not found."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contracts": {
+      "post": {
+        "summary": "Create a new contract with related entities",
+        "requestBody": {
+          "description": "Contract data including participants, files, and processes",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "contract": {
+                    "$ref": "#/components/schemas/Contract"
+                  },
+                  "participants": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ContractParticipant"
+                    }
+                  },
+                  "contractType": {
+                    "$ref": "#/components/schemas/ContractType"
+                  },
+                  "contractTypeProcessTemplates": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ContractTypeProcessTemplate"
+                    }
+                  },
+                  "attachFiles": {
+                    "items": {
+                      "$ref": "#/components/schemas/AttachFile"
+                    }
+                  },
+                  "subFiles": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/SubFile"
+                    }
+                  }
+                },
+                "required": [
+                  "contract",
+                  "participants",
+                  "contractType",
+                  "contractTypeProcessTemplates"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Contract created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Contract created successfully"
+                    },
+                    "contractId": {
+                      "type": "integer",
+                      "example": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Invalid input data"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get a list of contracts",
+        "responses": {
+          "200": {
+            "description": "List of contracts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Contract"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contracts/{id}": {
+      "get": {
+        "summary": "Get a contract by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Contract details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "contract": {
+                      "$ref": "#/components/schemas/Contract"
+                    },
+                    "participants": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ContractParticipant"
+                      }
+                    },
+                    "contractType": {
+                      "$ref": "#/components/schemas/ContractType"
+                    },
+                    "contractProcesses": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ContractProcess"
+                      }
+                    },
+                    "attachFiles": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/AttachFile"
+                      }
+                    },
+                    "subFiles": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SubFile"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Contract not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Contract not found"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a contract by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Updated contract data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "contract": {
+                    "$ref": "#/components/schemas/Contract"
+                  },
+                  "participants": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ContractParticipant"
+                    }
+                  },
+                  "contractType": {
+                    "$ref": "#/components/schemas/ContractType"
+                  },
+                  "contractTypeProcessTemplates": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ContractTypeProcessTemplate"
+                    }
+                  },
+                  "attachFiles": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/AttachFile"
+                    }
+                  },
+                  "subFiles": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/SubFile"
+                    }
+                  }
+                },
+                "required": [
+                  "contract",
+                  "participants",
+                  "contractType",
+                  "contractTypeProcessTemplates",
+                  "attachFiles"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Contract updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Contract updated successfully"
+                    },
+                    "contractId": {
+                      "type": "integer",
+                      "example": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Invalid input data"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Contract not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Contract not found"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a contract by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Contract deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Contract deleted successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Contract not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Contract not found"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "Nguyễn Hoàng Thái"
+          },
+          "email": {
+            "type": "string",
+            "example": "abc@gmail.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "$2b$10$ZLpBejTLdLMuQ31ZP4bwh.GnPqc335Qb2RqB38YoFuj2neuqoxeUi"
+          },
+          "phone": {
+            "type": "string",
+            "example": 332998889
+          },
+          "address": {
+            "type": "string",
+            "example": "Hà Nội"
+          },
+          "status": {
+            "type": "integer",
+            "example": 1
+          },
+          "idNumber": {
+            "type": "string",
+            "example": 22393848332
+          },
+          "accountType": {
+            "type": "integer",
+            "example": 1
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-07-27T00:51:03.000Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-07-27T00:51:03.000Z"
+          },
+          "organizationId": {
+            "type": "integer",
+            "example": 1
+          }
+        }
+      },
+      "User Role": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "roleName": {
+            "type": "string",
+            "example": "Giám đốc"
+          },
+          "userId": {
+            "type": "integer",
+            "example": 1
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-07-27T00:51:03.000Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-07-27T00:51:03.000Z"
+          }
+        }
+      },
+      "Payment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "userId": {
+            "type": "integer",
+            "example": 1
+          },
+          "bankName": {
+            "type": "string",
+            "example": "MB Bank"
+          },
+          "bankNumber": {
+            "type": "string",
+            "example": 123456789
+          },
+          "senderName": {
+            "type": "string",
+            "example": "Thái"
+          },
+          "amount": {
+            "type": "integer",
+            "format": "float",
+            "example": 30
+          },
+          "validDate": {
+            "type": "string",
+            "format": "date",
+            "example": "2024-07-27T00:00:00.000Z"
+          },
+          "expireDate": {
+            "type": "string",
+            "format": "date",
+            "example": "2024-07-27T00:00:00.000Z"
+          },
+          "paymentBundleName": {
+            "type": "string",
+            "example": "Năm"
+          },
+          "period": {
+            "type": "integer",
+            "format": "float",
+            "example": 3
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-07-27T00:51:03.000Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-07-27T00:51:03.000Z"
+          }
+        }
+      },
+      "Signature": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "serialNumber": {
+            "type": "string",
+            "example": 133287538
+          },
+          "issuer": {
+            "type": "string",
+            "example": "Thái"
+          },
+          "issueDate": {
+            "type": "string",
+            "format": "date",
+            "example": "2024-07-27T00:00:00.000Z"
+          },
+          "expireDate": {
+            "type": "string",
+            "format": "date",
+            "example": "2024-07-27T00:00:00.000Z"
+          },
+          "description": {
+            "type": "string",
+            "example": "Đã đăng ký gói"
+          },
+          "apiUrl": {
+            "type": "string",
+            "example": "https://something"
+          },
+          "userId": {
+            "type": "integer",
+            "example": 1
+          },
+          "organizationId": {
+            "type": "integer",
+            "example": 1
+          },
+          "type": {
+            "type": "integer",
+            "example": 1
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-07-27T00:51:03.000Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-07-27T00:51:03.000Z"
+          }
+        }
+      },
+      "Organization": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "Ontik"
+          },
+          "address": {
+            "type": "string",
+            "example": "Hà Nội"
+          },
+          "bankName": {
+            "type": "string",
+            "example": "MB Bank"
+          },
+          "bankNumber": {
+            "type": "string",
+            "example": 12345678910
+          },
+          "taxCode": {
+            "type": "string",
+            "example": 112233
+          },
+          "phone": {
+            "type": "string",
+            "example": 332998889
+          },
+          "representative": {
+            "type": "string",
+            "example": "Trần Tuấn"
+          },
+          "businessLicenseNo": {
+            "type": "string",
+            "example": 123456789
+          },
+          "registrationDate": {
+            "type": "string",
+            "format": "date",
+            "example": "2024-07-27T00:00:00.000Z"
+          },
+          "type": {
+            "type": "integer",
+            "example": 1
+          },
+          "status": {
+            "type": "integer",
+            "example": 1
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-07-27T00:51:03.000Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-07-27T00:51:03.000Z"
+          }
+        }
+      },
+      "Contract": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "Hợp đồng abc"
+          },
+          "description": {
+            "type": "string",
+            "example": "Hợp đồng abc"
+          },
+          "status": {
+            "type": "integer",
+            "example": 1
+          },
+          "contractNumber": {
+            "type": "string",
+            "example": 110011
+          },
+          "priority": {
+            "type": "integer",
+            "example": 1
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date",
+            "example": "2024-07-27T00:00:00.000Z"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date",
+            "example": "2024-07-27T00:00:00.000Z"
+          },
+          "createBy": {
+            "type": "integer",
+            "example": 1
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-07-27T00:51:03.000Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-07-27T00:51:03.000Z"
+          }
+        }
+      },
+      "ContractType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "Hợp đồng abc"
+          },
+          "description": {
+            "type": "string",
+            "example": "Loại hợp đồng của hợp đồng abc"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-07-27T00:51:03.000Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-07-27T00:51:03.000Z"
+          }
+        }
+      },
+      "ContractParticipant": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "contractId": {
+            "type": "integer",
+            "example": 1
+          },
+          "userId": {
+            "type": "integer",
+            "example": 1
+          },
+          "organizationId": {
+            "type": "integer",
+            "example": 1
+          },
+          "contractTypeId": {
+            "type": "integer",
+            "example": 1
+          },
+          "processCreatedBy": {
+            "type": "integer",
+            "example": 1
+          },
+          "type": {
+            "type": "integer",
+            "example": 1
+          },
+          "step": {
+            "type": "integer",
+            "example": 2
+          },
+          "pageSign": {
+            "type": "integer",
+            "example": 1
+          },
+          "x": {
+            "type": "integer",
+            "format": "float",
+            "example": 1
+          },
+          "y": {
+            "type": "integer",
+            "format": "float",
+            "example": 1
+          },
+          "width": {
+            "type": "integer",
+            "format": "float",
+            "example": 1
+          },
+          "height": {
+            "type": "integer",
+            "format": "float",
+            "example": 1
+          },
+          "signatureUrl": {
+            "type": "string",
+            "example": "https://something"
+          },
+          "status": {
+            "type": "integer",
+            "example": 1
+          },
+          "isCreated": {
+            "type": "integer",
+            "example": 1
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-07-27T00:51:03.000Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-07-27T00:51:03.000Z"
+          }
+        }
+      },
+      "ContractProcess": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "action": {
+            "type": "string",
+            "example": "Duyệt"
+          },
+          "actionStatus": {
+            "type": "integer",
+            "example": 1
+          },
+          "step": {
+            "type": "integer",
+            "example": 1
+          },
+          "actionBy": {
+            "type": "integer",
+            "example": 1
+          },
+          "contractParticipantId": {
+            "type": "integer",
+            "example": 1
+          },
+          "optional": {
+            "type": "boolean",
+            "example": "true"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-07-27T00:51:03.000Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-07-27T00:51:03.000Z"
+          }
+        }
+      },
+      "ContractTypeProcessTemplate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "action": {
+            "type": "string",
+            "example": "Duyệt"
+          },
+          "step": {
+            "type": "integer",
+            "example": 1
+          },
+          "actionBy": {
+            "type": "integer",
+            "example": 1
+          },
+          "note": {
+            "type": "string",
+            "example": "Người duyệt trình ký"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-07-27T00:51:03.000Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-07-27T00:51:03.000Z"
+          },
+          "contractTypeId": {
+            "type": "integer",
+            "example": 1
+          }
+        }
+      },
+      "AttachFile": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "contractId": {
+            "type": "integer",
+            "example": 1
+          },
+          "file": {
+            "type": "string",
+            "format": "file",
+            "example": "Đính kèm.pdf"
+          }
+        }
+      },
+      "SubFile": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "contractId": {
+            "type": "integer",
+            "example": 1
+          },
+          "file": {
+            "type": "string",
+            "format": "file",
+            "example": "Phụ lục.pdf"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
